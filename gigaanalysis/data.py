@@ -31,7 +31,7 @@ def _pick_float_dtype(to_check):
     if np.issubdtype(dtype, np.complexfloating):
         return np.complex_
     else:
-        return np.float_
+        return np.float64
 
 
 def _as_float_array(x):
@@ -921,7 +921,7 @@ def empty_data():
     empty_data : Data
         A Data object that contains no data points.
     """
-    return Data(np.array([], dtype=np.float_).reshape(0, 2))
+    return Data(np.array([], dtype=np.float64).reshape(0, 2))
 
 
 def sum(data_list):
@@ -1048,7 +1048,7 @@ def y_from_fit(data, x_value, x_range, poly_deg=1, as_Data=False,
     if not isinstance(data, Data):
         raise TypeError(
             f"data needs to be a Data object but was a {type(data)}.")
-    elif not isinstance(x_range, (int, float, np.int_, np.float_)):
+    elif not isinstance(x_range, (int, float, np.int_, np.float64)):
         raise TypeError(
             f"x_range needs to be a float but was a {type(x_range)}")
     elif not isinstance(poly_deg, (int, np.int_)):
@@ -1056,7 +1056,7 @@ def y_from_fit(data, x_value, x_range, poly_deg=1, as_Data=False,
             f"poly_deg needs to be a int but was a {type(poly_deg)}")
 
     x_value = np.asarray(x_value)
-    if x_value.dtype != np.float_ and x_value.dtype != np.int_:
+    if x_value.dtype != np.float64 and x_value.dtype != np.int_:
         raise TypeError(
             f"x_value needs to be of float type but was a {x_value.dtype}")
     elif x_value.ndim > 1:
